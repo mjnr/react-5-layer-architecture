@@ -1,0 +1,12 @@
+node_modules
+build/*
+!build/.gitkeep
+!build/images
+static/images/*
+!static/images/.gitkeep
+*.log
+*.log.*
+.DS_Store
+backend.js
+serverconf.js
+assets.json

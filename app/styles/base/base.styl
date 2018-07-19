@@ -1,0 +1,65 @@
+// -------------------------
+// Base
+// -------------------------
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+#icons-sprite {
+	display: none !important;
+}
+
+body {
+	background-color: white;
+	overflow-x: hidden;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: $container-width;
+	width: 90%;
+	+below(sm){
+		width: 93%
+	}
+}
+
+img,
+svg {
+	max-width: 100%;
+}
+
+button {
+	background-color: transparent;
+}
+
+html,
+body {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	background-color: #eff3f9;
+	font-family: 'Arial', sans-serif;
+	font-weight: 400;
+
+	&.fonts-are-loaded {
+		font-family: $base-font-family;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		font-family: $base-font-family;
+		font-weight: bold;
+	}
+}
+
+input {
+	outline: none;
+}

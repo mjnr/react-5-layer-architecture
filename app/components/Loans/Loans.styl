@@ -1,0 +1,49 @@
+.loans-wrapper {
+	background-color: white;
+	margin: 40px auto;
+	max-width: 600px;
+	padding: 40px;
+
+	> .title {
+		line-height: 1.2;
+		margin-bottom: 30px;
+	}
+
+	.subtitle {
+		line-height: 1;
+		margin-bottom: 24px;
+	}
+
+	.field {
+
+		> label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		> input {
+			padding: 10px;
+			width: 100%;
+		}
+	}
+
+	.options {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.single-option {
+		align-items: center;
+		margin-bottom: 4%;
+		width: 48%;
+
+		& a {
+			background-color: $color.green;
+			color: white;
+			display: block;
+			padding: 20px;
+			text-align: center;
+		}
+	}
+}
