@@ -1,3 +1,4 @@
+import LoansEnhancer from 'enhancers/Loans/';
 import IncomeStep from './IncomeStep/';
 import ValueStep from './ValueStep/';
 import ResultsStep from './ResultsStep/';
@@ -50,4 +51,4 @@ const Loans = ({
 	);
 };
 
-export default Loans;
+export default LoansEnhancer(Loans);
