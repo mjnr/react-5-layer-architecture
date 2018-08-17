@@ -1,4 +1,4 @@
-import Loans from 'components/Loans';
+import Loans from 'containers/Loans';
 
 const Home = () => {
 	return (

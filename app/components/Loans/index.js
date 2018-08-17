@@ -1,154 +1,53 @@
-import { Component } from 'react';
-import { options, results } from './mock';
-import { fetchData } from 'ducks/requests';
-import { connect } from 'react-redux';
-import Button from 'components/Button/';
+import IncomeStep from './IncomeStep/';
+import ValueStep from './ValueStep/';
+import ResultsStep from './ResultsStep/';
+import Loader from './Loader';
 
 import './Loans.styl';
 
-class Loans extends Component {
-	constructor(props) {
-		super(props);
+const Loans = ({
+	options,
+	results,
+	selectedOption,
+	selectedValue,
+	isLoading,
+	onSelectIncome,
+	onSelectValue,
+	onGetResults,
+	isIncomeStepActive,
+	isValueStepActive,
+	isResultStepActive,
+	installments,
+	plots
+}) => {
 
-		this.state = {
-			options: [],
-			results: [],
-			isLoading: false,
-			selectedOption: null,
-			selectedValue: null
-		};
-	}
+	return (
+		<div className="loans-wrapper">
+			<h1 className="title">Você precisa de um empréstimo?</h1>
 
-	onSelectIncome(option) {
-		this.setState({
-			isLoading: true
-		});
+			<Loader isLoading={isLoading} />
 
-		setTimeout(() => {
-			this.setState({
-				selectedOption: option
-			}, () => {
-				this.setState({
-					isLoading: false
-				});
-			});
-		}, 600);
-	}
+			<IncomeStep
+				isActive={isIncomeStepActive}
+				onSelectIncome={onSelectIncome}
+				options={options}
+			/>
 
-	onSelectValue(e) {
-		const value = e.target.value;
+			<ValueStep
+				isActive={isValueStepActive}
+				onSelectValue={onSelectValue}
+				onGetResults={onGetResults}
+			/>
 
-		this.setState({
-			selectedValue: value
-		});
-	}
-
-	onGetResults() {
-		const { dispatch } = this.props;
-
-		this.setState({
-			isLoading: true
-		});
-
-		dispatch(fetchData({
-			url: '/results/',
-			key: 'results',
-			mock: results
-		})).then(res => this.setState({
-			results,
-			isLoading: false
-		}));
-	}
-
-	getIncomeOptions() {
-		const { dispatch } = this.props;
-
-		this.setState({
-			isLoading: true
-		});
-
-		return dispatch(fetchData({
-			url: '/income-options/',
-			key: 'income-options',
-			mock: options
-		})).then(res => this.setState({
-			options,
-			isLoading: false
-		}));
-	}
-
-	componentDidMount() {
-		this.getIncomeOptions();
-	}
-
-	render() {
-		const {
-			options,
-			results,
-			selectedOption,
-			selectedValue,
-			isLoading
-		} = this.state;
-
-		return (
-			<div className="loans-wrapper">
-				<h1 className="title">Você precisa de um empréstimo?</h1>
-				{ isLoading &&
-					<div>Carregando...</div>
-				}
-
-				{ !isLoading && !selectedOption &&
-					<div className="step" data-step="income">
-						<h2 className="subtitle">Me diga sua renda!</h2>
-						<ul className="options">
-							{
-								options.map(({ value, text }, index) => {
-									return (
-										<li className="single-option">
-											<a onClick={() => this.onSelectIncome(value)} href="#">{text}</a>
-										</li>
-									);
-								})
-							}
-						</ul>
-					</div>
-				}
-				{
-					!isLoading && selectedOption && !results.length &&
-					<div className="step" data-step="value">
-						<h2 className="subtitle">De quanto você precisa?</h2>
-						<div className="field">
-							<input
-								onChange={this.onSelectValue.bind(this)}
-								for="loan-value"
-								type="text"
-							/>
-							<Button onClick={this.onGetResults.bind(this)}>Calcular</Button>
-						</div>
-					</div>
-				}
-				{
-					!!results.length &&
-					<div className="step" data-step="results">
-						<h2 className="subtitle">Pronto, escolha a melhor opção pra você!</h2>
-						<div className="results">
-							{
-								results.map(({ name, value }) => {
-									return (
-										<div className="single-result">
-											<h3 className="title">{name}</h3>
-											<p>Total do Empréstimo: {selectedValue}</p>
-											<p>Parcelas: 48x de R$ {Math.floor(selectedValue / 48)}</p>
-										</div>
-									);
-								})
-							}
-						</div>
-					</div>
-				}
-			</div>
-		);
-	}
+			<ResultsStep
+				installments={installments}
+				plots={plots}
+				selectedValue={selectedValue}
+				isActive={isResultStepActive}
+				results={results}
+			/>
+		</div>
+	);
 };
 
-export default connect()(Loans);
+export default Loans;
