@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { options, results } from './mock';
 import { fetchData } from 'ducks/requests';
 import { connect } from 'react-redux';
+import Button from 'components/Button/';
 
 import './Loans.styl';
 
@@ -59,14 +60,14 @@ class Loans extends Component {
 		}));
 	}
 
-	componentDidMount() {
+	getIncomeOptions() {
 		const { dispatch } = this.props;
 
 		this.setState({
 			isLoading: true
 		});
 
-		dispatch(fetchData({
+		return dispatch(fetchData({
 			url: '/income-options/',
 			key: 'income-options',
 			mock: options
@@ -74,6 +75,10 @@ class Loans extends Component {
 			options,
 			isLoading: false
 		}));
+	}
+
+	componentDidMount() {
+		this.getIncomeOptions();
 	}
 
 	render() {
@@ -118,7 +123,7 @@ class Loans extends Component {
 								for="loan-value"
 								type="text"
 							/>
-							<button onClick={this.onGetResults.bind(this)}>Calcular</button>
+							<Button onClick={this.onGetResults.bind(this)}>Calcular</Button>
 						</div>
 					</div>
 				}
