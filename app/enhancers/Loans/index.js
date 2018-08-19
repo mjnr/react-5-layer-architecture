@@ -1,8 +1,6 @@
 import { options, results } from './mock';
 import { fetchData } from 'ducks/requests';
 import { connect } from 'react-redux';
-import Button from 'components/Button/';
-import Loans from 'components/Loans/';
 
 import {
 	compose,
@@ -74,7 +72,7 @@ const LoansEnhancer = compose(
 	}),
 	lifecycle({
 		componentDidMount() {
-			const { setIsLoading, getIncomeOptions } = this.props;
+			const { getIncomeOptions } = this.props;
 			getIncomeOptions();
 		}
 	})

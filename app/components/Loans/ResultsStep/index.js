@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import Step from 'components/Loans/Step/';
 
 const byEachResult = ({ selectedValue, installments, plots }) => ({ name, value }) => {
