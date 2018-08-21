@@ -1,13 +1,19 @@
-import { Fragment } from 'react';
 import Step from 'components/Loans/Step/';
 
-const byEachResult = ({ selectedValue, installments, plots }) => ({ name, value }) => {
+const byEachResult = ({ selectedValue, installments, plots }) => ({ name, value }, index) => {
 	return (
-		<div className="single-result">
+		<button className="single-result">
+			<div className="icon">{index + 1}</div>
 			<h3 className="title">{name}</h3>
-			<p>Total do Empréstimo: {selectedValue}</p>
-			<p>Parcelas: {plots}x de R$ {installments}</p>
-		</div>
+			<div className="result">
+				<strong className="label">Total do Empréstimo</strong>
+				<p className="value">{selectedValue}</p>
+			</div>
+			<div className="result">
+				<strong className="label">Parcelas</strong>
+				<p className="value">{plots}x de R$ {installments}</p>
+			</div>
+		</button>
 	);
 };
 
