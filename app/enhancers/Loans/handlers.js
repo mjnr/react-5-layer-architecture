@@ -6,11 +6,11 @@ import withHandlers from 'recompose/withHandlers';
 export default compose(
 	setDisplayName('/app/enhancers/Loans/handlers.js'),
 	withHandlers({
-		onSelectIncome: ({ setIsLoading, setSelectedOption }) => (option) => {
+		onSelectIncome: ({ value, setIsLoading, setSelectedOption }) => (value) => {
 			setIsLoading(true);
 
 			setTimeout(() => {
-				setSelectedOption(option);
+				setSelectedOption(value);
 				setIsLoading(false);
 			}, 600);
 		},

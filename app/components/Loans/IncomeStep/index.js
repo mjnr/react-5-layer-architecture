@@ -1,9 +1,9 @@
 import Step from 'components/Loans/Step/';
 
-const byEachOption = ({ onSelectIncome }) => ({ value, text }, index) => {
+const byEachOption = ({ onSelectIncome }) => ({ text }, index) => {
 	return (
 		<li className="single-option">
-			<a onClick={() => onSelectIncome(value)} href="#">{text}</a>
+			<a onClick={onSelectIncome} href="#">{text}</a>
 		</li>
 	);
 };
