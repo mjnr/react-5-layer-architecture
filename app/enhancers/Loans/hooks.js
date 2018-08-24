@@ -6,7 +6,7 @@ export default compose(
 	setDisplayName('/app/enhancers/Loans/hooks.js'),
 	lifecycle({
 		componentDidMount() {
-			const { setIsLoading, getIncomeOptions } = this.props;
+			const { getIncomeOptions } = this.props;
 			getIncomeOptions();
 		}
 	})
